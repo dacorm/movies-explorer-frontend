@@ -5,9 +5,9 @@ export const NavTab = () => {
     return (
         <div className='nav'>
             <ul className='nav__items'>
-                <li className='nav__item'></li>
-                <li className='nav__item'></li>
-                <li className='nav__item'></li>
+                <li className='nav__item'>О проекте</li>
+                <li className='nav__item'>Технологии</li>
+                <li className='nav__item'>Студент</li>
             </ul>
         </div>
     );

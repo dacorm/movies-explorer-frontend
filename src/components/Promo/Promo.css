@@ -13,5 +13,14 @@
 
 .promo__title {
     text-align: center;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 58px;
+    /* or 116% */
+
+    letter-spacing: -0.04em;
+
+    color: #000000;
     width: 730px;
 }
