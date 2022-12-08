@@ -1,7 +1,7 @@
 import React from 'react';
 import './AboutProject.css';
 
-const AboutProject = () => {
+export const AboutProject = () => {
     return (
         <div className='about'>
             <div className="about__content">
@@ -34,4 +34,3 @@ const AboutProject = () => {
     );
 };
 
-export default AboutProject;
