@@ -43,7 +43,6 @@
     font-weight: 400;
     font-size: 50px;
     line-height: 58px;
-    /* identical to box height, or 116% */
 
     text-align: center;
     letter-spacing: -0.04em;
@@ -58,7 +57,6 @@
     width: 460px;
     font-size: 14px;
     line-height: 20px;
-    /* or 143% */
 
     text-align: center;
     letter-spacing: -0.04em;
