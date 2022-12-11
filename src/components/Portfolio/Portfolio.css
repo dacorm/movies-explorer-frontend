@@ -1,5 +1,7 @@
 .portf {
     padding-top: 100px;
+    margin: 0 70px;
+    width: calc(100% - 140px);
 }
 
 .portf__title {

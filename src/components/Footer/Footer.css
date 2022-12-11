@@ -4,6 +4,8 @@
     align-items: center;
     justify-content: center;
     padding-top: 125px;
+    margin: 0 70px;
+    width: calc(100% - 140px);
 }
 
 .footer__title {

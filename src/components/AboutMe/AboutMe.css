@@ -1,5 +1,6 @@
 .about-student {
-    width: 100%;
+    margin: 0 70px;
+    width: calc(100% - 140px);
 }
 
 .about-student__content {

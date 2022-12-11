@@ -8,8 +8,8 @@ interface NavigationProps {
 }
 export const Navigation: React.FC<NavigationProps> = ({ visible, onClose }) => {
     const makeLinkActive = (navData: Record<string, boolean>) => (navData.isActive
-        ? 'navigation__link navigation__link_active'
-        : 'navigation__link');
+        ? 'navigation__item navigation__item_active'
+        : 'navigation__item');
 
     const handleOverlayClick = (e: React.MouseEvent) => {
         if ((e.target as HTMLElement).classList.contains('navigation_visible')) {
@@ -37,9 +37,9 @@ export const Navigation: React.FC<NavigationProps> = ({ visible, onClose }) => {
                         </NavLink>
                     </li>
                 </ul>
-                <Link className="navigation__link navigation__link_icon" to="/profile" onClick={onClose}>
+                <Link className="navigation__item navigation__item_icon" to="/profile" onClick={onClose}>
                     Аккаунт
-                    <div className="navigation__link-icon navigation__link-icon_profile" />
+                    <div className="navigation__item-icon navigation__item-icon_profile" />
                 </Link>
             </nav>
         </div>
