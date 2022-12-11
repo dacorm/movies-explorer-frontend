@@ -18,6 +18,8 @@
 }
 
 .card__bottom-wrapper {
+    height: min-content;
+    margin-top: 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -29,7 +31,7 @@
     font-weight: 500;
     font-size: 13px;
     line-height: 16px;
-    margin: 16px 0 0 0;
+    margin: 0;
 
 
     color: #000000;
@@ -37,9 +39,18 @@
 
 .card__bottom-like {
     width: 30px;
-    height: 30px;
+    height: 16px;
+    border: none;
+    background: transparent url("../../images/like_active.svg") no-repeat center;
+    cursor: pointer;
+}
+
+.card__bottom-like_inactive {
+    width: 30px;
+    height: 16px;
     border: none;
     background: transparent url("../../images/like.svg") no-repeat center;
+    cursor: pointer;
 }
 
 .card__bottom-time {

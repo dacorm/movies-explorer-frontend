@@ -1,8 +1,12 @@
 import React from 'react';
 import './Footer.css';
+import { classNames } from '../../utils/classnames';
 
-export const Footer = () => (
-    <div className="footer">
+interface FooterProps {
+    className?: string;
+}
+export const Footer: React.FC<FooterProps> = ({ className }) => (
+    <div className={classNames('footer', {}, [className])}>
         <h2 className="footer__title">Учебный проект Яндекс.Практикум х BeatFilm.</h2>
         <div className="footer__bottom">
             <p className="footer__text">&copy; 2022</p>

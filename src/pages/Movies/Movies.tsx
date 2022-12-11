@@ -2,13 +2,14 @@ import React from 'react';
 import { Header } from '../../components/Header/Header';
 import { Footer } from '../../components/Footer/Footer';
 import { SearchForm } from '../../components/SearchForm/SearchForm';
-import { MoviesCard } from '../../components/MoviesCard/MoviesCard';
+import { MoviesCardList } from '../../components/MoviesCardList/MoviesCardList';
+import './Movies.css';
 
 export const Movies = () => (
     <>
         <Header />
         <SearchForm />
-        <MoviesCard />
-        <Footer />
+        <MoviesCardList />
+        <Footer className="footer_movies" />
     </>
 );

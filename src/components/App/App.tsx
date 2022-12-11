@@ -4,6 +4,7 @@ import './App.css';
 import Landing from '../../pages/Landing';
 
 const MoviesPage = React.lazy(() => import('../../pages/Movies'));
+const ProfilePage = React.lazy(() => import('../../pages/ProfileEdit'));
 
 function App() {
     return (
@@ -15,6 +16,14 @@ function App() {
                     element={(
                         <Suspense fallback={<div>Идёт загрузка...</div>}>
                             <MoviesPage />
+                        </Suspense>
+                    )}
+                />
+                <Route
+                    path="profile"
+                    element={(
+                        <Suspense fallback={<div>Идёт загрузка...</div>}>
+                            <ProfilePage />
                         </Suspense>
                     )}
                 />
