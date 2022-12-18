@@ -1,5 +1,6 @@
 import React from 'react';
 import './EnterForm.css';
+import logo from '../../images/logo.svg';
 
 interface EnterFormProps {
     isRegister: boolean;
@@ -7,6 +8,7 @@ interface EnterFormProps {
 
 export const EnterForm: React.FC<EnterFormProps> = ({ isRegister }) => (
     <div className="form-container">
+        <img src={logo} alt="Логотип" className="form-container__logo" />
         <h1 className="form-container__title">{isRegister ? 'Добро пожаловать!' : 'Рады видеть!'}</h1>
         <form className="form">
             {isRegister
@@ -18,12 +20,12 @@ export const EnterForm: React.FC<EnterFormProps> = ({ isRegister }) => (
                         </div>
                     )}
             <div className="form__input-container">
-                <label htmlFor="name" className="form__label">E-mail</label>
+                <label htmlFor="email" className="form__label">E-mail</label>
                 <input type="email" className="form__input" id="email" placeholder="pochta@yandex.ru|" />
                 <span className="form__span" />
             </div>
             <div className="form__input-container">
-                <label htmlFor="name" className="form__label">Пароль</label>
+                <label htmlFor="password" className="form__label">Пароль</label>
                 <input type="password" className="form__input" id="password" placeholder="••••••••••••••" />
                 <span className="form__span">Что-то пошло не так...</span>
             </div>
@@ -33,7 +35,7 @@ export const EnterForm: React.FC<EnterFormProps> = ({ isRegister }) => (
                 </button>
                 <p className="form__submit-text">
                     {isRegister ? 'Уже зарегистрированы?' : 'Еще не зарегистрированы?'}
-                    <span>{isRegister ? 'Войти' : 'Регистрация'}</span>
+                    <span className="form__submit-span">{isRegister ? 'Войти' : 'Регистрация'}</span>
                 </p>
             </div>
         </form>

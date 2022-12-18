@@ -7,6 +7,7 @@ const MoviesPage = React.lazy(() => import('../../pages/Movies'));
 const ProfilePage = React.lazy(() => import('../../pages/ProfileEdit'));
 const RegisterPage = React.lazy(() => import('../../pages/Register'));
 const LoginPage = React.lazy(() => import('../../pages/Login'));
+const NotFoundPage = React.lazy(() => import('../../pages/NotFound'));
 
 function App() {
     return (
@@ -42,6 +43,14 @@ function App() {
                     element={(
                         <Suspense fallback={<div>Идёт загрузка...</div>}>
                             <LoginPage />
+                        </Suspense>
+                    )}
+                />
+                <Route
+                    path="*"
+                    element={(
+                        <Suspense fallback={<div>Идёт загрузка...</div>}>
+                            <NotFoundPage />
                         </Suspense>
                     )}
                 />
