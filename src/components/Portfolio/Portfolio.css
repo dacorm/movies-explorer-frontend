@@ -1,0 +1,108 @@
+.portf {
+    margin: 0 70px;
+    padding-bottom: 125px;
+}
+
+.portf__title {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 20px;
+    margin: 0 0 50px 0;
+    color: #A0A0A0;
+    mix-blend-mode: normal;
+}
+
+.portf__item-text {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 50px;
+    text-decoration: none;
+    letter-spacing: -0.04em;
+    color: #000000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.portf__item-text:hover {
+    opacity: .7;
+}
+
+.portf__item-text::after {
+    content: '';
+    background-image: url('../../images/link.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 18px;
+    height: 18px;
+}
+
+.portf__items {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.portf__item {
+    border-bottom: 1px solid #E8E8E8;
+    padding-bottom: 19px;
+}
+
+.portf__item:last-of-type {
+    border-bottom: none;
+}
+
+.portf__item-img {
+
+    object-fit: contain;
+    object-position: center;
+}
+
+@media screen and (max-width: 768px) {
+    .portf {
+        margin: 0 50px;
+        padding-bottom: 90px;
+    }
+
+    .portf__item-text {
+        font-size: 28px;
+    }
+}
+
+@media screen and (max-width: 630px) {
+    .portf__item-text {
+        font-size: 22px;
+        line-height: 28px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .portf {
+        margin: 0 14px;
+        padding-bottom: 70px;
+    }
+
+    .portf__title {
+        font-size: 14px;
+        margin-bottom: 40px;
+    }
+
+    .portf__item-text {
+        font-size: 18px;
+        line-height: 22px;
+
+    }
+
+    .portf__item-text::after {
+        width: 10px;
+        height: 10px;
+    }
+}
