@@ -18,8 +18,8 @@ export const Navigation: React.FC<NavigationProps> = ({ visible, onClose }) => {
     };
 
     return (
-        <div className={`navigation ${visible && 'navigation_visible'}`} onClick={handleOverlayClick}>
-            <nav className={`navigation__wrapper ${visible && 'navigation__wrapper_visible'}`}>
+        <div className={`navigation ${visible ? 'navigation_visible' : ''}`} onClick={handleOverlayClick}>
+            <nav className={`navigation__wrapper ${visible ? 'navigation__wrapper_visible' : ''}`}>
                 <ul className="navigation__items">
                     <li className="navigation__item navigation__item_mobile">
                         <NavLink className={makeLinkActive} to="/" onClick={onClose}>

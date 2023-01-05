@@ -9,7 +9,7 @@ export const Header = () => {
 
     const [isOpened, setOpened] = useState(false);
 
-    const openPopup = () => {
+    const togglePopup = () => {
         setOpened((state) => !state);
     };
 
@@ -18,15 +18,8 @@ export const Header = () => {
     };
 
     return (
-        <header className={`header ${isLanding && 'header_landing'}`}>
+        <header className={`header ${isLanding ? 'header_landing' : ''}`}>
             <Link className="header__logo" to="/" title="На главную" />
-            {!isLanding
-                && (
-                    <div
-                        className={`header__burger ${isOpened ? 'header__burger_opened' : ''}`}
-                        onClick={openPopup}
-                    />
-                )}
             {
                 !isLanding
                     ? <Navigation visible={isOpened} onClose={closePopup} />
@@ -53,6 +46,20 @@ export const Header = () => {
                         </nav>
                     )
             }
+            {!isLanding
+                && (
+                    <div className="burger" onClick={togglePopup}>
+                        <span
+                            className={`burger__line burger__line_first ${isOpened ? 'burger__line_first_opened' : ''}`}
+                        />
+                        <span
+                            className={`burger__line burger__line_second ${isOpened ? 'burger__line_second_opened' : ''}`}
+                        />
+                        <span
+                            className={`burger__line burger__line_third ${isOpened ? 'burger__line_third_opened' : ''}`}
+                        />
+                    </div>
+                )}
         </header>
     );
 };

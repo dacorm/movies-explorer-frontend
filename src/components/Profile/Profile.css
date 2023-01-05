@@ -60,3 +60,11 @@
 .profile__link_exit {
     color: #FF4062;
 }
+
+@media screen and (max-width: 767px) {
+    .profile {
+        margin-left: 30px;
+        margin-right: 30px;
+        width: calc(100% - 60px);
+    }
+}
