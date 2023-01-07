@@ -43,6 +43,16 @@
     cursor: pointer;
 }
 
+.card__bottom-delete {
+    visibility: hidden;
+    transition: visibility .3s linear;
+    cursor: pointer;
+}
+
+.card:hover .card__bottom-delete {
+    visibility: visible;
+}
+
 .card__bottom-like_inactive {
     width: 30px;
     height: 16px;

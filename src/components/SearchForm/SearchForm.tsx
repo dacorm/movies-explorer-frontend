@@ -4,7 +4,7 @@ import './SearchForm.css';
 export const SearchForm = () => (
     <div className="search">
         <div className="search__input-container">
-            <input className="search__input" placeholder="Фильм" />
+            <input className="search__input" placeholder="Фильм" required />
             <button className="search__button" type="submit">Поиск</button>
         </div>
         <div className="search__checkbox-container">
