@@ -20,6 +20,7 @@ export const Header = () => {
 
     const closePopup = () => {
         setOpened(false);
+        document.body.style.overflow = 'auto';
     };
 
     return (
