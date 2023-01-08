@@ -110,7 +110,21 @@
 .search__input-container {
     position: relative;
     width: 100%;
+}
 
+.search__input-error {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #FF0000;
+    width: 100%;
+    padding: 3px 0 0 0;
+    visibility: hidden;
+}
+
+.search__input-error_active {
+    visibility: visible;
 }
 
 .search__input {

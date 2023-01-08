@@ -8,7 +8,7 @@ export const SavedMovies = () => (
     <>
         <Header />
         <SearchForm />
-        <MoviesCardList />
+        <MoviesCardList movies={[]} />
         <Footer className="footer_movies" />
     </>
 );

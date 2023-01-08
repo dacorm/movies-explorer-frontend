@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Navigation } from '../Navigation/Navigation';
 import './Header.css';
 
-export const Header = () => {
+export const Header = memo(() => {
     const location = useLocation().pathname;
     const isLanding = location === '/';
 
@@ -68,4 +68,4 @@ export const Header = () => {
                 )}
         </header>
     );
-};
+});
