@@ -3,10 +3,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 1280px;
-    height: 664px;
+    max-width: 1280px;
+    width: 100%;
+    min-height: 524px;
     background-color: #F3C1F8;
     background-image: url("../../images/promo.svg");
+    background-size: 320px 320px;
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -17,10 +19,31 @@
     font-weight: 400;
     font-size: 50px;
     line-height: 58px;
-    /* or 116% */
-
     letter-spacing: -0.04em;
-
     color: #000000;
-    width: 730px;
+    max-width: 730px;
+}
+
+@media screen and (max-width: 768px) {
+    .promo {
+        min-height: 784px;
+    }
+
+    .promo__title {
+        max-width: unset;
+        margin: 0 19px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .promo {
+        min-height: 570px;
+        background-size: 248px 248px;
+    }
+
+    .promo__title {
+        margin: 0 10px;
+        font-size: 31px;
+        line-height: 39px;
+    }
 }

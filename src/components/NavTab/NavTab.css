@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 66px;
+    padding: 24px 0;
     background-color: #000000;
 }
 
@@ -12,6 +12,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 .nav__item {
@@ -19,10 +22,26 @@
     font-weight: 500;
     font-size: 13px;
     line-height: 16px;
-
     display: flex;
     align-items: center;
     text-decoration-line: underline;
-
     color: #FFFFFF;
+}
+
+.nav__item:hover {
+    opacity: .7;
+}
+
+@media screen and (max-width: 450px) {
+    .nav {
+        padding: 25px 0;
+    }
+
+    .nav__items {
+        gap: 24px;
+    }
+
+    .nav__item {
+        font-size: 11px;
+    }
 }

@@ -1,15 +1,12 @@
 import React from 'react';
 import './NavTab.css';
 
-export const NavTab = () => {
-    return (
-        <div className='nav'>
-            <ul className='nav__items'>
-                <li className='nav__item'>О проекте</li>
-                <li className='nav__item'>Технологии</li>
-                <li className='nav__item'>Студент</li>
-            </ul>
-        </div>
-    );
-};
-
+export const NavTab = () => (
+    <div className="nav">
+        <nav className="nav__items">
+            <a href="src/components/NavTab#project" className="nav__item">О проекте</a>
+            <a href="src/components/NavTab#techs" className="nav__item">Технологии</a>
+            <a href="src/components/NavTab#student" className="nav__item">Студент</a>
+        </nav>
+    </div>
+);
