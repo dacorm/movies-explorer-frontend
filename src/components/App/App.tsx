@@ -1,7 +1,12 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Landing from '../../pages/Landing';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import {
+    auth, login, register, userData,
+} from '../../utils/MainApi';
+import { currentUserType } from '../../types/user';
 
 const MoviesPage = React.lazy(() => import('../../pages/Movies'));
 const ProfilePage = React.lazy(() => import('../../pages/ProfileEdit'));
@@ -11,6 +16,31 @@ const NotFoundPage = React.lazy(() => import('../../pages/NotFound'));
 const SavedMoviesPage = React.lazy(() => import('../../pages/SavedMovies'));
 
 function App() {
+    const [currentUser, setCurrentUser] = useState<currentUserType | null>(null);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    const handleRegister = async (data: userData) => {
+        try {
+            const user = await register(data);
+            setIsLoggedIn(true);
+            setCurrentUser(user);
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
+    const handleLogin = async (data: Partial<userData>) => {
+        try {
+            const token = await login(data);
+            const userData = await auth();
+            setIsLoggedIn(true);
+            localStorage.setItem('token', token);
+            setCurrentUser(userData);
+        } catch (e) {
+            console.warn(e);
+        }
+    };
+
     return (
         <div className="App">
             <Routes>
@@ -19,7 +49,7 @@ function App() {
                     path="movies"
                     element={(
                         <Suspense fallback={<div>Идёт загрузка...</div>}>
-                            <MoviesPage />
+                            <ProtectedRoute Component={MoviesPage} isLoggedIn={isLoggedIn} />
                         </Suspense>
                     )}
                 />
@@ -27,7 +57,7 @@ function App() {
                     path="profile"
                     element={(
                         <Suspense fallback={<div>Идёт загрузка...</div>}>
-                            <ProfilePage />
+                            <ProtectedRoute Component={ProfilePage} isLoggedIn={isLoggedIn} />
                         </Suspense>
                     )}
                 />
@@ -51,7 +81,7 @@ function App() {
                     path="saved-movies"
                     element={(
                         <Suspense fallback={<div>Идёт загрузка...</div>}>
-                            <SavedMoviesPage />
+                            <ProtectedRoute Component={SavedMoviesPage} isLoggedIn={isLoggedIn} />
                         </Suspense>
                     )}
                 />
