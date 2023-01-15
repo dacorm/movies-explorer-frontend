@@ -1,7 +1,7 @@
 import { makeRequest } from './makeRequest';
 
 export interface userData {
-    login: string;
+    name: string;
     email: string;
     password: string;
 }
@@ -36,6 +36,12 @@ export function updateUser(data: Partial<userData>) {
     });
 }
 
-export function auth() {
-    return makeRequest('https://api.movies.dacorm.nomoredomains.club/users/me');
+export function auth(token: string) {
+    return makeRequest('https://api.movies.dacorm.nomoredomains.club/users/me', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+        },
+    });
 }
