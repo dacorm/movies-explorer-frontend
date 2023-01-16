@@ -93,7 +93,7 @@ export const MoviesCardList: React.FC<MoviesCardListProps> = ({
                     />
                 );
             }) : null}
-            {isSavedMovies && (
+            {isSavedMovies && myMovies.length > 0 && (
                 myMovies.map((item) => (
                     <MoviesCard
                         name={item.nameRU}
