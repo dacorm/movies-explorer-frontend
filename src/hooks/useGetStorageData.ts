@@ -4,7 +4,7 @@ export function useGetStorageData<T>(key: string, data?: T) {
     const getValue = () => {
         const storage = localStorage.getItem(key);
 
-        if (storage) {
+        if (storage && storage !== 'undefined') {
             return JSON.parse(storage);
         }
 

@@ -58,7 +58,7 @@ export const Movies: React.FC<MoviesProps> = ({ onLike, onDislike, myMovies }) =
 
     useEffect(() => {
         if (movies) setFindedMovies(movies);
-        if (!filteredMovies) setFilteredMovies(filterMovies(findedMovies, searchParam, checkBox));
+        if (!filteredMovies && findedMovies) setFilteredMovies(filterMovies(findedMovies, searchParam, checkBox));
     }, [movies]);
 
     useEffect(() => {
