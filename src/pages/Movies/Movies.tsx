@@ -9,8 +9,15 @@ import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 import { useGetStorageData } from '../../hooks/useGetStorageData';
 import { useGetMovies } from '../../hooks/useGetMovies';
 import { filterMovies } from '../../utils/filterMovies';
+import { movieData } from '../../utils/MainApi';
 
-export const Movies = () => {
+interface MoviesProps {
+    onLike: (movieData: movieData) => Promise<string>;
+    onDislike: (id: string) => Promise<string>;
+    myMovies: movieData[];
+}
+
+export const Movies: React.FC<MoviesProps> = ({ onLike, onDislike, myMovies }) => {
     const {
         values, handleChange, errors, isValid, setValues, resetForm,
     } = useFormAndValidation({
@@ -72,7 +79,7 @@ export const Movies = () => {
                 onCheckBoxChange={handleCheckboxChange}
                 checked={checkbox}
             />
-            <MoviesCardList movies={filteredMovies || []} />
+            <MoviesCardList movies={filteredMovies || []} onLike={onLike} onDislike={onDislike} myMovies={myMovies} />
             <Footer className="footer_movies" />
         </>
     );

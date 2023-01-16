@@ -1,12 +1,12 @@
 import React, {
     FC, Suspense, useEffect, useState,
 } from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Landing from '../../pages/Landing';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import {
-    auth, login, register, userData,
+    auth, deleteMovie, getMovies, login, movieData, register, saveMovie, updateUser, userData,
 } from '../../utils/MainApi';
 import { currentUserType } from '../../types/user';
 import CurrentUserContext from '../../contexts/currentUserContext';
@@ -21,7 +21,7 @@ const SavedMoviesPage = React.lazy(() => import('../../pages/SavedMovies'));
 function App() {
     const [currentUser, setCurrentUser] = useState<currentUserType | null>(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const navigate = useNavigate();
+    const [myMovies, setMyMovies] = useState<movieData[]>();
 
     const handleRegister = async (data: userData | Partial<userData>) => {
         try {
@@ -67,9 +67,49 @@ function App() {
         setIsLoggedIn(false);
     };
 
+    const handleProfileEdit = async (values: Partial<userData>) => {
+        try {
+            const data = await updateUser(values);
+            setCurrentUser(data);
+        } catch (e) {
+            console.warn(e);
+        }
+    };
+
+    const fetchMovies = async () => {
+        try {
+            const movies = await getMovies();
+            setMyMovies(movies);
+        } catch (e) {
+            console.warn(e);
+        }
+    };
+
+    const handleLike = async (movie: movieData) => {
+        try {
+            const response = await saveMovie(movie);
+            fetchMovies();
+        } catch (e) {
+            console.warn(e);
+        }
+    };
+
+    const handleDislike = async (id: string) => {
+        try {
+            const response = await deleteMovie(id);
+            fetchMovies();
+        } catch (e) {
+            console.warn(e);
+        }
+    };
+
     useEffect(() => {
-        console.log(isLoggedIn);
-    }, [isLoggedIn]);
+        fetchMovies();
+    }, []);
+
+    useEffect(() => {
+        console.log('from app', myMovies);
+    }, [myMovies]);
 
     useEffect(() => {
         checkToken();
@@ -84,7 +124,13 @@ function App() {
                         path="movies"
                         element={(
                             <Suspense fallback={<div>Идёт загрузка...</div>}>
-                                <ProtectedRoute Component={MoviesPage} isLoggedIn={isLoggedIn} />
+                                <ProtectedRoute
+                                    Component={MoviesPage as unknown as FC<{}>}
+                                    isLoggedIn={isLoggedIn}
+                                    onLike={handleLike}
+                                    onDislike={handleDislike}
+                                    myMovies={myMovies}
+                                />
                             </Suspense>
                         )}
                     />
@@ -92,7 +138,12 @@ function App() {
                         path="profile"
                         element={(
                             <Suspense fallback={<div>Идёт загрузка...</div>}>
-                                <ProtectedRoute Component={ProfilePage as unknown as FC<{}>} isLoggedIn={isLoggedIn} onLogout={logout} />
+                                <ProtectedRoute
+                                    Component={ProfilePage as unknown as FC<{}>}
+                                    isLoggedIn={isLoggedIn}
+                                    onLogout={logout}
+                                    onSubmit={handleProfileEdit}
+                                />
                             </Suspense>
                         )}
                     />
@@ -116,7 +167,12 @@ function App() {
                         path="saved-movies"
                         element={(
                             <Suspense fallback={<div>Идёт загрузка...</div>}>
-                                <ProtectedRoute Component={SavedMoviesPage} isLoggedIn={isLoggedIn} />
+                                <ProtectedRoute
+                                    Component={SavedMoviesPage as unknown as FC<{}>}
+                                    isLoggedIn={isLoggedIn}
+                                    myMovies={myMovies}
+                                    onDislike={handleDislike}
+                                />
                             </Suspense>
                         )}
                     />

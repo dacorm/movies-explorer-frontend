@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import './MoviesCardList.css';
+import { useLocation } from 'react-router-dom';
 import { MoviesCard } from '../MoviesCard/MoviesCard';
 import { Movies } from '../../types/moviesType';
+import { movieData } from '../../utils/MainApi';
 import { debounce } from '../../utils/debounce';
 
 export interface MoviesCardListProps {
     movies: Movies[];
+    onLike?: (movieData: movieData) => Promise<string>;
+    onDislike?: (id: string) => Promise<string>;
+    myMovies: movieData[];
 }
-export const MoviesCardList: React.FC<MoviesCardListProps> = ({ movies }) => {
+export const MoviesCardList: React.FC<MoviesCardListProps> = ({
+    movies, onLike, onDislike, myMovies,
+}) => {
     const [slicedMovies, setSlicedMovies] = useState<Movies[]>([]);
     const [cardsCount, setCardsCount] = useState<number>();
+    const location = useLocation().pathname;
+    const isSavedMovies = location === '/saved-movies';
     const [count, setCount] = useState(slicedMovies.length || 0);
 
     const calculateCardsCount = () => {
@@ -67,14 +76,36 @@ export const MoviesCardList: React.FC<MoviesCardListProps> = ({ movies }) => {
 
     return (
         <div className="list">
-            {movies.length > 0 ? slicedMovies.map((item: Movies) => (
-                <MoviesCard
-                    name={item.nameRU}
-                    url={item.image.formats.thumbnail.url}
-                    duration={item.duration}
-                    key={item.id}
-                />
-            )) : 'Ничего не найдено'}
+            {movies.length > 0 && !isSavedMovies ? slicedMovies.map((item: Movies) => {
+                const arr = myMovies && myMovies.filter((movie) => movie.nameRU === item.nameRU);
+                const id = arr.length > 0 ? arr[0]._id : undefined;
+                return (
+                    <MoviesCard
+                        name={item.nameRU}
+                        url={item.image.formats.thumbnail.url}
+                        duration={item.duration}
+                        key={item.id}
+                        item={item}
+                        onDislike={onDislike}
+                        onLike={onLike}
+                        isFilmLiked={arr.length > 0}
+                        filmId={id}
+                    />
+                );
+            }) : null}
+            {isSavedMovies && (
+                myMovies.map((item) => (
+                    <MoviesCard
+                        name={item.nameRU}
+                        url={item.image}
+                        duration={item.duration}
+                        key={item._id}
+                        onDislike={onDislike}
+                        onLike={onLike}
+                        filmId={item._id}
+                    />
+                ))
+            )}
             {(count + slicedMovies.length) < 100 && <button type="button" onClick={handleClick} className="list__button">Ещё</button>}
         </div>
     );
