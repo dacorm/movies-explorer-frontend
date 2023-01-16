@@ -77,8 +77,8 @@ export const MoviesCardList: React.FC<MoviesCardListProps> = ({
     return (
         <div className="list">
             {movies.length > 0 && !isSavedMovies ? slicedMovies.map((item: Movies) => {
-                const arr = myMovies && myMovies.filter((movie) => movie.nameRU === item.nameRU);
-                const id = arr.length > 0 ? arr[0]._id : undefined;
+                const arr = myMovies.length > 0 && myMovies.filter((movie) => movie.nameRU === item.nameRU);
+                const id = arr && arr.length > 0 ? arr[0]._id : undefined;
                 return (
                     <MoviesCard
                         name={item.nameRU}
@@ -88,7 +88,7 @@ export const MoviesCardList: React.FC<MoviesCardListProps> = ({
                         item={item}
                         onDislike={onDislike}
                         onLike={onLike}
-                        isFilmLiked={arr.length > 0}
+                        isFilmLiked={arr ? arr.length > 0 : false}
                         filmId={id}
                     />
                 );
